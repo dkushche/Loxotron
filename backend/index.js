@@ -12,3 +12,6 @@ app.get('/*', (req, res) =>{
 })
 
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT ))
+
+str.charAt(0)
+
