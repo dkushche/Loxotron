@@ -7,8 +7,8 @@ const app = express()
 
 app.get('/*', (req, res) =>{
     
-    res.status(200).json('Hello world!')
+    res.status(200).json('Hello World!')
 
 })
 
-app.listen(PORT, () => console.log("SERVER STARTED ON PORT " +PORT ))
+app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT ))
