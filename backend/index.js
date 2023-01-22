@@ -1,17 +1,10 @@
 import express from 'express'
 
-const PORT  = 5000;
-
-
+const PORT = 5000
 const app = express()
 
-app.get('/*', (req, res) =>{
-    
+app.get('/*', (req, res) => {
     res.status(200).json('Hello World!')
-
 })
 
-app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT ))
-
-str.charAt(0)
-
+app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT))
