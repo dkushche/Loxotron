@@ -1,0 +1,11 @@
+*
+
+!.eslintignore
+!.eslintrc.js
+
+!tsconfig.json
+!yarn.lock
+!package.json
+!public
+!nginx
+!src
