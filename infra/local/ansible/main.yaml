@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+  tasks:
+    - name: Add front domain in /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: 127.0.0.1 loxotron.com
+        state: "{{ requested_action }}"
+        backup: yes
+
+    - name: Add back domain in /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: 127.0.0.1 api.loxotron.com
+        state: "{{ requested_action }}"
+        backup: yes
+    
+    - name: Add back domain in /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: 127.0.0.1 admin.loxotron.com
+        state: "{{ requested_action }}"
+        backup: yes

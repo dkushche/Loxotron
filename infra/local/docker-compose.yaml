@@ -4,11 +4,10 @@ services:
   loxotron_ingress:
     container_name: loxotron_ingress
     restart: unless-stopped
-    image: nginx:1.23.3
+    image: loxotron_ingress:0.0
+    build: ingress
     ports:
       - 80:80
-    volumes:
-      - ./ingress/default.conf:/etc/nginx/conf.d/default.conf
 
   loxotron_backend:
     container_name: loxotron_api
