@@ -16,6 +16,7 @@ Run Loxotron Casino locally on your machine and access using loxotron.com domain
 Run docker-compose to bring up all services
 
 ```console
+user@hostname:infra/local$ docker-compose build
 user@hostname:infra/local$ docker-compose up
 ```
 
