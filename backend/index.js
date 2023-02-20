@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import mongoose from 'mongoose'
 
 const db_url = "mongodb://root:example@loxotron_backend_db:27017"
@@ -23,14 +23,16 @@ app.get('/*', (req, res) => {
 
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT))
 
-app.get('/login', (req, res) => {
-    res.render("login.ejs")
+app.get('/register', (req, res) => {
+    res.send({ "refresh_token": "$base64token" })
 
 })
  
 const userSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    firstName:String,
+    lastName:String
   });
   
   // Создание модели пользователя
@@ -40,7 +42,7 @@ const userSchema = new mongoose.Schema({
   app.use(bodyParser.urlencoded({ extended: true }))
   
   
-  app.post('/users', function(req, res) {
+  app.post('/register', function(req, res) {
     // Обработка полученных данных из формы
     const { username, password } = req.body
   
@@ -71,17 +73,10 @@ const userSchema = new mongoose.Schema({
     newUser.save(function(err) {
       if (err) {
         // Отправка ошибки в ответе
-        res.status(500).send('Ошибка создания пользователя')
+        res.status(500).send("reason : " +  "User creation error")
       } else {
         // Отправка сообщения об успешном создании пользователя в ответе
         res.send('Пользователь создан успешно')
       }
     })
   })
-
-
-
-
-
-    
-          
