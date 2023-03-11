@@ -5,8 +5,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY . .
-RUN npm install 
+RUN yarn install
 
 EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
