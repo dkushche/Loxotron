@@ -1,15 +1,19 @@
-require("./database")
-
 const authRoutes = require("./routes/auth")
 const bodyParser = require('express')
 
-const app = require('express')()
+function create_server(db_controller, db_url) {
+    db_controller.connect(db_url)
 
-app.use(bodyParser.json())
-app.use(authRoutes)
+    const app = require('express')()
 
-app.get('/*', (req, res) => {
-    res.status(500).json('Fuck you leather man')
-})
+    app.use(bodyParser.json())
+    app.use(authRoutes)
 
-module.exports = app
+    app.get('/*', (req, res) => {
+        res.status(500).json('Fuck you leather man')
+    })
+
+    return app
+}
+
+module.exports = create_server
