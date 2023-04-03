@@ -1,12 +1,14 @@
 import React from 'react';
-import SvgIcons from 'constants/SvgIcons';
+import LoxotronCasinoTextComponent from 'components/LoxotronCasinoTextComponent';
 import './App.sass';
 
 function App(): JSX.Element {
   return (
     <div className='main'>
       <div className='container'>
-        <SvgIcons.loxotronCasinoText/>
+        <div className='LoxotronCasinoText'>
+          <LoxotronCasinoTextComponent />
+        </div>
       </div>
     </div>
   );

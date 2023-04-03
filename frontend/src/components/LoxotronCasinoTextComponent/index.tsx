@@ -1,11 +1,8 @@
-import LoxotronCasinoText from 'assets/svg/LoxotronCasinoText.svg';
-import './styles.sass'
+import LoxotronCasinoText from "assets/svg/LoxotronCasinoText.svg"
 
 function LoxotronCasinoTextComponent(): JSX.Element {
   return (
-    <div className='LoxotronCasinoText'>
-      <LoxotronCasinoText />
-    </div>
+      <LoxotronCasinoText/>
   );
 }
 
