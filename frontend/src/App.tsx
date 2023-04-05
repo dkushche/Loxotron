@@ -1,8 +1,7 @@
 import React from 'react';
 import LoxotronCasinoTextComponent from 'components/LoxotronCasinoTextComponent';
+import ButtonComponent from 'components/ButtonComponent';
 import './App.sass';
-
-import Button from 'components/ButtonComponent';
 
 function App(): JSX.Element {
   return (
@@ -11,7 +10,7 @@ function App(): JSX.Element {
         <div className='LoxotronCasinoText'>
           <LoxotronCasinoTextComponent />
         </div>
-        <Button>Submit</Button>
+        <ButtonComponent text='submit' />
       </div>
     </div>
   );

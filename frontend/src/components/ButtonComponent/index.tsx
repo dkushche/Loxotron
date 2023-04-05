@@ -1,12 +1,18 @@
 import { type } from 'os';
 import React from 'react';
 
-type Prors = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {}
+import './button.sass';
 
-const Button = ( props: Prors ) =>{
+interface buttonProps {
+    text: string
+}
+
+function ButtonComponent(props: buttonProps): JSX.Element {
     return (
-        <button{...props}/>
+        <button className='ButtonComponent'>{props.text}</button>
     );
-    }
+  }
 
-export default Button;
+
+export default ButtonComponent;
+
