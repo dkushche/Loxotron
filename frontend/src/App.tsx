@@ -2,6 +2,8 @@ import React from 'react';
 import LoxotronCasinoTextComponent from 'components/LoxotronCasinoTextComponent';
 import './App.sass';
 
+import Button from 'components/ButtonComponent';
+
 function App(): JSX.Element {
   return (
     <div className='main'>
@@ -9,6 +11,7 @@ function App(): JSX.Element {
         <div className='LoxotronCasinoText'>
           <LoxotronCasinoTextComponent />
         </div>
+        <Button>Submit</Button>
       </div>
     </div>
   );
