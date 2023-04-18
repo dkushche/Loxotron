@@ -1,29 +1,24 @@
-const router = require("express").Router()
-const UserModel = require("../models/user.js")
+function create_router(db_controller){
+    const router = require("express").Router()
+    
+    router.post('/register',(req, res) => {
+        const {username,password} = req.body
 
-router.post('/register', (req, res) => {
-    const { username, password } = req.body
-
-    const newUser = new UserModel({
-        username: username,
-        password: password,
-        firstName: '',
-        lastName: '',
-        location: '',
-        dateOfBirth: '',
-        img: {
-            data: new Buffer.alloc(0),
-            contentType: ''
-        }
-    })
-
-    newUser.save(function(err) {
+         const err = db_controller.create_user(username,password)
+        
         if (err) {
             res.status(500).send({"reason": `User creation error: ${err}`})
         } else {
             res.send({"refresh_token": "$base64token"})
         }
     })
-})
 
-module.exports = router
+    return router
+}
+    
+    
+    
+
+
+module.exports = create_router
+

@@ -1,4 +1,5 @@
 const DBControllerInterface =  require("../interfaces/DBControllerInterface.js")
+const UserModel = require("../models/user")
 
 class MongoDBController extends DBControllerInterface {
     constructor() {
@@ -30,4 +31,25 @@ class MongoDBController extends DBControllerInterface {
             console.log('Database connected successfully');
         })
     }
+
+     async create_user(username, password) {
+        const newUser = new UserModel({
+            username: username,
+            password: password,
+            firstName: '',
+            lastName: '',
+            location: '',
+            dateOfBirth: '',
+            img: {
+                data: new Buffer.alloc(0),
+                contentType: ''
+            }
+        })
+        const err = await newUser.save().catch(err => err)
+        
+        return err
+    
+    }
 }
+
+module.exports = MongoDBController
