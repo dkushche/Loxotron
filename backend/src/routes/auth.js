@@ -1,7 +1,7 @@
 function create_router(db_controller){
     const router = require("express").Router()
     
-    router.post('/register',(req, res) => {
+    router.post('/register', (req, res) => {
         const {username,password} = req.body
 
          const err = db_controller.create_user(username,password)
@@ -16,9 +16,4 @@ function create_router(db_controller){
     return router
 }
     
-    
-    
-
-
 module.exports = create_router
-

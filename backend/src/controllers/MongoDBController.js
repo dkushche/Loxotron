@@ -1,4 +1,4 @@
-const DBControllerInterface =  require("../interfaces/DBControllerInterface.js")
+const DBControllerInterface = require("../interfaces/DBControllerInterface.js")
 const UserModel = require("../models/user")
 
 class MongoDBController extends DBControllerInterface {
@@ -48,7 +48,6 @@ class MongoDBController extends DBControllerInterface {
         const err = await newUser.save().catch(err => err)
         
         return err
-    
     }
 }
 

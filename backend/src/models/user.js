@@ -16,7 +16,7 @@ const userSchema = new Schema({
     }
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
     const user = this
     const saltRounds = 10
 

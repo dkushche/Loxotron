@@ -5,7 +5,7 @@ class DBControllerInterface {
         }
         if(!this.create_user){
             throw new Error ("User creation error")
-          }
+        }
     }
 }
 
