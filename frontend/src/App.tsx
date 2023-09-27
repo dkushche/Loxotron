@@ -8,6 +8,7 @@ function App(): JSX.Element {
       <div className='container'>
         <div className='LoxotronCasinoText'>
           <LoxotronCasinoTextComponent />
+          
         </div>
       </div>
     </div>
