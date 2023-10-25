@@ -11,7 +11,7 @@ import { Response } from 'express';
 export class AuthService {
   constructor(
     @InjectModel('user') private readonly userModel: Model<UserDocument>,
-    private jwtService: JwtService,
+    public jwtService: JwtService,
   ) {}
 
   async registration(user: User): Promise<Object> {
