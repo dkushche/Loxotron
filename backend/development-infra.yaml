@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  loxotron_backend:
+    container_name: loxotron_dev_api
+    image: loxotron_dev_api:0.0
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    ports:
+      - 7000:7000
+
+  loxotron_backend_db.com:
+    container_name: loxotron_db
+    image: mongo:4.4.19-rc0-focal
+    volumes:
+      - type: bind
+        source: ./dev_mongodb_data
+        target: /data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+
+  loxotron_backend_db_admin:
+    container_name: loxotron_db_admin
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_BASICAUTH_USERNAME: user
+      ME_CONFIG_BASICAUTH_PASSWORD: test123
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@loxotron_backend_db.com:27017/
+    ports:
+      - 8081:8081
