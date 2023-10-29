@@ -1,10 +1,6 @@
-import {
-  Injectable,
-  NestMiddleware,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { NextFunction, Request, Response } from 'express';
-import { AuthService } from '../services/auth.service';
+import { Injectable, NestMiddleware, UnauthorizedException } from "@nestjs/common";
+import { NextFunction, Request, Response } from "express";
+import { AuthService } from "../services/auth.service";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -13,13 +9,15 @@ export class AuthMiddleware implements NestMiddleware {
     try {
       const cookie = req.headers.cookie;
       if (!cookie) {
-        throw new UnauthorizedException('Please log in or sign in');
+        throw new UnauthorizedException("Please log in or sign in");
       }
       const token = cookie.slice(6);
       const decodedToken = this.authService.jwtService.verify(token);
-      next();
+      if (decodedToken) {
+        next();
+      }
     } catch (e) {
-      res.status(401).send('Invalid token');
+      res.status(401).send("Invalid token");
     }
   }
 }

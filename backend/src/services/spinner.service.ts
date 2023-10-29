@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class SpinnerService {
-    spin() {
-        return {
-            "message": "Looser"
-        }
-    }
+  spin() {
+    return {
+      message: "Looser",
+    };
+  }
 }
