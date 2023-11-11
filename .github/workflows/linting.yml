@@ -2,11 +2,13 @@ name: Lint L0x0tron
 on: push
 jobs:
   lint:
-    runs-on: ubuntu:22.04.3
+    runs-on: ubuntu-22.04
     steps:
       - name: Get repository code
-        uses: actions/checkout
+        uses: actions/checkout@v4
       - name: Install dependencies
+        working-directory: ./backend
         run: yarn install
       - name: Lint application
+        working-directory: ./backend
         run: yarn run lint
