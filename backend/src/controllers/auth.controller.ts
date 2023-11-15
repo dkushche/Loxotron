@@ -6,10 +6,7 @@ import { Response } from "express";
 
 @Controller()
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @Post("register")
   @HttpCode(201)

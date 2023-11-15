@@ -10,7 +10,7 @@ import { Response } from "express";
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel("user") private readonly userModel: Model<UserDocument>,
+    @InjectModel("user") private userModel: Model<UserDocument>,
     public jwtService: JwtService,
   ) {}
 
