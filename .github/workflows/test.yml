@@ -1,0 +1,14 @@
+name: Test L0x0tron
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./backend
+        run: yarn install
+      - name: Test application
+        working-directory: ./backend
+        run: yarn run test

@@ -5,7 +5,6 @@ import { AuthService } from "../src/services/auth.service";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "../src/models/user.model";
-import {BadRequestException} from "@nestjs/common"
 
 const inputUser: User = {
   username: "qwerty",
@@ -27,7 +26,6 @@ export class MockUserModel {
 
 describe("AuthController", () => {
   let authController: AuthController;
-  let authService: AuthService;
 
   beforeAll( async () => {
     const appModule: TestingModule = await Test.createTestingModule({
@@ -43,38 +41,32 @@ describe("AuthController", () => {
     }).compile();
 
     authController = appModule.get<AuthController>(AuthController);
-    authService = appModule.get<AuthService>(AuthService);
   });
 
   it("Should be defined", () => {
     expect(AuthController).toBeDefined();
-    expect(AuthService).toBeDefined();
   });
 
   it("Should return message of success: registration", async () => {
     expect(await authController.registartion(inputUser)).toEqual({ message: "You are successfully registered"});
   });
 
-    it("Should throw an error: registration", async () => {
-        jest
-            .spyOn(authService, 'registration')
-            .mockImplementationOnce(() => {
-              throw new BadRequestException("This username is already taken");
-            });
-        try {
-          const result = await authController.registartion(inputUser);
-          expect(result).toThrow("This username is already taken")
-        } catch (e) {
-          console.log(e.name)
-        }
-    });
+  it("Should throw an error: registration", async () => {
+    try {
+      MockUserModel.findOne.mockResolvedValue(true);
+      const result = await authController.registartion(inputUser);
+      expect(result).toThrow("This username is already taken")
+    } catch (e) {
+      console.log(e.name)
+    }
+  });
 
-    it("Should throw an error: login", async () => {
-      try {
-        const result = await authController.signIn(inputUser);
-        expect(result).toThrow("Incorrect username or password");
-      } catch (e) {
-        console.log(e.name)
-      }
-    });
+  it("Should throw an error: login", async () => {
+    try {
+      const result = await authController.signIn(inputUser);
+      expect(result).toThrow("Incorrect username or password");
+    } catch (e) {
+      console.log(e.name)
+    }
+  });
 });
