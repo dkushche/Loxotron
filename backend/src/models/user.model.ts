@@ -10,9 +10,6 @@ export class User {
 
   @Prop()
   password: string;
-
-  @Prop({ default: Date.now })
-  id: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
