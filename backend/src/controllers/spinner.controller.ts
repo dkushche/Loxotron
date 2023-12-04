@@ -6,6 +6,6 @@ export class SpinnerController {
   constructor(private readonly spinnerService: SpinnerService) {}
   @Get("spin")
   spin() {
-    return this.spinnerService.spin();
+    return this.spinnerService.spin(0.3);
   }
 }
