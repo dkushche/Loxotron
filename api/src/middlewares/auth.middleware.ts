@@ -8,11 +8,14 @@ export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     try {
       const cookie = req.headers.cookie;
+
       if (!cookie) {
         throw new UnauthorizedException("Please log in or sign in");
       }
+
       const token = cookie.slice(6);
       const decodedToken = this.authService.jwtService.verify(token);
+
       if (decodedToken) {
         next();
       }
