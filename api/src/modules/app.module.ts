@@ -6,7 +6,11 @@ import { SpinnerModule } from "./spinner.module";
 import { AuthMiddleware } from "../middlewares/auth.middleware";
 
 @Module({
-  imports: [ConfigModule.forRoot(), MongooseModule.forRoot(process.env.F), AuthModule, SpinnerModule],
+  imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.DB_URI),
+    AuthModule, SpinnerModule
+  ],
   controllers: [],
   providers: [],
 })
@@ -14,7 +18,10 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .exclude({ path: "register", method: RequestMethod.POST }, { path: "login", method: RequestMethod.GET })
+      .exclude(
+        { path: "register", method: RequestMethod.POST },
+        { path: "login", method: RequestMethod.POST }
+      )
       .forRoutes({ path: "*", method: RequestMethod.ALL });
   }
 }

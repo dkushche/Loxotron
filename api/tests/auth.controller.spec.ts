@@ -32,7 +32,7 @@ describe("AuthController", () => {
       controllers: [AuthController],
       providers: [
         JwtService,
-          AuthService,
+        AuthService,
         {
           provide: getModelToken("user"),
           useValue: MockUserModel
@@ -54,7 +54,9 @@ describe("AuthController", () => {
   it("Should throw an error: registration", async () => {
     try {
       MockUserModel.findOne.mockResolvedValue(true);
+
       const result = await authController.registartion(inputUser);
+
       expect(result).toThrow("This username is already taken")
     } catch (e) {
       console.log(e.name)

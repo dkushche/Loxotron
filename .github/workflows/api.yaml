@@ -1,0 +1,27 @@
+name: L0x0tron API
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./api
+        run: yarn install
+      - name: Lint application
+        working-directory: ./api
+        run: yarn run lint
+  test:
+      runs-on: ubuntu-22.04
+      steps:
+        - name: Get repository code
+          uses: actions/checkout@v4
+        - name: Install dependencies
+          working-directory: ./api
+          run: yarn install
+        - name: Test application
+          working-directory: ./api
+          run: yarn run test

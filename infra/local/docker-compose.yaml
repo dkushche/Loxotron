@@ -9,13 +9,20 @@ services:
     ports:
       - 80:80
 
-  loxotron_backend:
+  loxotron_api:
     container_name: loxotron_api
     restart: unless-stopped
     image: loxotron_api:0.0
-    build: ../../backend
+    environment:
+      JWT_SECRET: j1XcfjWQ7hXdEf2arwoopoYBvkQtat4q5BmLjXOFgBA
+      DB_URI: mongodb://root:example@loxotron_api_db:27017
+      PORT: 5000
+      WIN_RATE: 0.2
+    build:
+      context: ../../api
+      dockerfile: prod.Dockerfile
 
-  loxotron_backend_db:
+  loxotron_api_db:
     container_name: loxotron_db
     restart: unless-stopped
     image: mongo:4.4.19-rc0-focal
@@ -23,14 +30,14 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
-  loxotron_backend_db_admin:
+  loxotron_api_db_admin:
     container_name: loxotron_db_admin
     restart: unless-stopped
     image: mongo-express
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@loxotron_backend_db:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@loxotron_api_db:27017/
 
   loxotron_frontend:
     container_name: loxotron_front

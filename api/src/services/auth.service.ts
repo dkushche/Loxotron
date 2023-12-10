@@ -16,11 +16,15 @@ export class AuthService {
 
   async registration(user: User): Promise<object> {
     const newUser = new this.userModel(user);
+
     newUser.password = await bcrypt.hash(user.password, 10);
+
     if (await this.userModel.findOne({ username: newUser.username })) {
       throw new BadRequestException("This username is already taken");
     }
+
     newUser.save();
+
     return {
       message: "You are successfully registered",
     };
@@ -28,14 +32,20 @@ export class AuthService {
 
   async login(user: User, res: Response) {
     const newUser = new this.userModel(user);
+
     const isUsernameCorrect = await this.userModel.findOne({
       username: newUser.username,
     });
-    if (!isUsernameCorrect || !(await bcrypt.compare(user.password, isUsernameCorrect.password))) {
+
+    if (!isUsernameCorrect ||
+        !(await bcrypt.compare(user.password, isUsernameCorrect.password))) {
       throw new BadRequestException("Incorrect username or password");
     }
+
     const token = this.jwtService.sign({ _id: isUsernameCorrect._id });
+
     res.cookie("token", token, { httpOnly: true, secure: false });
+
     return {
       message: "You signed in successfully",
     };
