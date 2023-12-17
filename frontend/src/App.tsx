@@ -1,6 +1,7 @@
 import React from 'react';
 import LoxotronCasinoTextComponent from 'components/LoxotronCasinoTextComponent';
 import './App.sass';
+import {LogoComponent} from "./components/LoxotronCasinoLogoComponent";
 
 function App(): JSX.Element {
   return (
@@ -9,6 +10,9 @@ function App(): JSX.Element {
         <div className='LoxotronCasinoText'>
           <LoxotronCasinoTextComponent />
         </div>
+          <div className='LoxotronCasinoLogo'>
+              <LogoComponent width={500} height={500} />
+          </div>
       </div>
     </div>
   );
