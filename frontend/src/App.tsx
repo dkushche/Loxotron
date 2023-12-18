@@ -11,7 +11,7 @@ function App(): JSX.Element {
           <LoxotronCasinoTextComponent />
         </div>
           <div className='LoxotronCasinoLogo'>
-              <LogoComponent width={500} height={500} />
+              <LogoComponent />
           </div>
       </div>
     </div>
