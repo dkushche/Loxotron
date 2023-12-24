@@ -1,4 +1,5 @@
 import React from "react";
+import './button.sass'
 
 interface ButtonProps {
     text: string;
@@ -6,7 +7,9 @@ interface ButtonProps {
 
 const LoxotronCasinoButtonComponent: React.FC<ButtonProps> = function (props: ButtonProps) {
     return (
-        <button>{props.text}</button>
+        <button>
+            {props.text}
+        </button>
     )
 }
 

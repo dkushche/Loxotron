@@ -15,7 +15,7 @@ function App(): JSX.Element {
               <LoxotronCasinoLogoComponent />
           </div>
           <div className='LoxotronCasinoButton'>
-              <LoxotronCasinoButtonComponent text={'qwertyuio'} />
+              <LoxotronCasinoButtonComponent text={'Max'} />
           </div>
       </div>
     </div>
