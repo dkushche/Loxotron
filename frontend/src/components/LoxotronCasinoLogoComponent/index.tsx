@@ -1,8 +1,10 @@
 import React from "react";
 import LoxotronCasinoLogo from "../../assets/svg/LoxotronCasinoLogo.svg"
 
-export const LogoComponent: React.FC = () => {
+function LoxotronCasinoLogoComponent(): JSX.Element {
     return (
-            <LoxotronCasinoLogo width={1000} height={1000}/>
+            <LoxotronCasinoLogo width={500} height={500}/>
     )
 }
+
+export default LoxotronCasinoLogoComponent;
