@@ -15,10 +15,10 @@ function App(): JSX.Element {
           <div className='LoxotronCasinoLogo'>
               <LoxotronCasinoLogoComponent />
           </div>
-          <div className='LoxotronCasinoButton'>
-              <LoxotronCasinoButtonComponent text={'sassy css'} />
-          </div>
-        <div className='LoxotronCasinoInputField'>
+        <div className="LoxotronCasinoButton">
+          <LoxotronCasinoButtonComponent text={'Button'} />
+        </div>
+        <div className="LoxotronCasinoInputField">
           <LoxotronCasinoInputFieldComponent />
         </div>
       </div>
