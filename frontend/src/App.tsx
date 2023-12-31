@@ -22,7 +22,7 @@ function App(): JSX.Element {
         <div className="LoxotronCasinoInputField">
           <LoxotronCasinoInputFieldComponent />
         </div>
-        <LoxotronCasinoEntryFormComponent title={'Create account'} backend_endpoint={'s'} support_message={'s'} />
+        <LoxotronCasinoEntryFormComponent title={'Create account'} backend_endpoint={'s'} support_message={{ text: "No account?", link: "Create one"}} />
       </div>
     </div>
   );
