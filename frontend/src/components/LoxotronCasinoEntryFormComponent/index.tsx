@@ -31,10 +31,10 @@ function LoxotronCasinoEntryFormComponent(props: EntryFormProps) {
             </li>
           </ul>
         </form>
-        <div className="knopcka">
+        <div className="buttonComponent">
           <LoxotronCasinoButtonComponent text="Continue"/>
         </div>
-        <div className="support_message">
+        <div className="supportMessage">
           <span className="text">{props.support_message.text}</span>
           <span className="link">{props.support_message.link}</span>
         </div>
