@@ -4,6 +4,7 @@ import './App.sass';
 import LoxotronCasinoLogoComponent from "components/LoxotronCasinoLogoComponent"
 import LoxotronCasinoButtonComponent from "./components/LoxotronCasinoButtonComponent"
 import LoxotronCasinoInputFieldComponent from './components/LoxotronCasinoInputFieldComponent';
+import LoxotronCasinoEntryFormComponent from './components/LoxotronCasinoEntryFormComponent';
 
 function App(): JSX.Element {
   return (
@@ -21,6 +22,7 @@ function App(): JSX.Element {
         <div className="LoxotronCasinoInputField">
           <LoxotronCasinoInputFieldComponent />
         </div>
+        <LoxotronCasinoEntryFormComponent title={'Create account'} backendEndpoint={''} supportMessage={{ text: "No account?", link: "Create one"}} />
       </div>
     </div>
   );

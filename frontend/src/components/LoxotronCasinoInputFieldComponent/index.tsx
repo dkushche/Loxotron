@@ -4,7 +4,6 @@ function LoxotronCasinoInputFieldComponent(): JSX.Element {
   return (
         <input
           type='text'
-          placeholder="Type something"
         />
   )
 }
