@@ -4,8 +4,8 @@ import LoxotronCasinoButtonComponent from '../LoxotronCasinoButtonComponent';
 
 type EntryFormProps = {
   title: string,
-  backend_endpoint: string,
-  support_message: {
+  backendEndpoint: string,
+  supportMessage: {
     text: string,
     link: string
   }
@@ -35,8 +35,8 @@ function LoxotronCasinoEntryFormComponent(props: EntryFormProps) {
           <LoxotronCasinoButtonComponent text="Continue"/>
         </div>
         <div className="supportMessage">
-          <span className="text">{props.support_message.text}</span>
-          <span className="link">{props.support_message.link}</span>
+          <span className="text">{props.supportMessage.text}</span>
+          <span className="link">{props.supportMessage.link}</span>
         </div>
       </div>
 )
