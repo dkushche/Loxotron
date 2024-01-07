@@ -3,6 +3,7 @@ import './register.sass'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import config from '../../config';
 
 export default function RegisterComponent(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ export default function RegisterComponent(): JSX.Element {
 
   const handleSubmit = async () => {
 
-    await axios.post('http://localhost:7000/register', {
+    await axios.post(`${config.backend_url}/register`, {
       username,
       password,
     }).then(res => {

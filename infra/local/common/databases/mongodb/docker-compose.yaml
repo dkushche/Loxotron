@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  loxotron_api_db_admin:
+    container_name: loxotron_db_admin
+    restart: unless-stopped
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_ADMIN}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_URL: ${DB_URI}
+      ME_CONFIG_BASICAUTH_USERNAME: ${DB_ADMIN_UI_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${DB_ADMIN_UI_PASSWORD}
+
+  loxotron_api_db:
+    container_name: loxotron_db
+    restart: unless-stopped
+    image: mongo:4.4.19-rc0-focal
+    volumes:
+      - db-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_ADMIN}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  db-data:

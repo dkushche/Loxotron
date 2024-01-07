@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+
+  loxotron_ingress:
+    container_name: loxotron_ingress
+    restart: unless-stopped
+    image: loxotron_ingress:1.0
+    build: .
+    ports:
+      - 80:80

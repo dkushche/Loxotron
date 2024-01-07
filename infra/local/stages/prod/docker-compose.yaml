@@ -1,0 +1,28 @@
+version: "3.9"
+include:
+- ../../common/databases/${DB}/docker-compose.yaml
+- ../../common/ingress/${INGRESS}/docker-compose.yaml
+services:
+
+  loxotron_api:
+    container_name: loxotron_api
+    restart: unless-stopped
+    image: loxotron_api:0.0
+    env_file:
+      - ../../common/databases/${DB}/.env
+    environment:
+      JWT_SECRET: j1XcfjWQ7hXdEf2arwoopoYBvkQtat4q5BmLjXOFgBA
+      DB_TYPE: ${DB}
+      PORT: 5000
+      WIN_RATE: 0.2
+    build:
+      context: ../../../../api
+      dockerfile: prod.Dockerfile
+
+  loxotron_frontend:
+    container_name: loxotron_front
+    restart: unless-stopped
+    image: loxotron_front:0.0
+    build:
+      context: ../../../../frontend
+      dockerfile: prod.Dockerfile

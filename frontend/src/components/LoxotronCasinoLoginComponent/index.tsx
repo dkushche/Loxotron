@@ -3,6 +3,7 @@ import './login.sass'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from '../../config';
 
 export default function LoginComponent(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ export default function LoginComponent(): JSX.Element {
 
   const handleSubmit = async () => {
 
-    await axios.post('http://localhost:7000/login', {
+    await axios.post(`${config.backend_url}/login`, {
       username,
       password,
     }).then(res => {
