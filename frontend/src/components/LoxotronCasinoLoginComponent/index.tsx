@@ -3,11 +3,8 @@ import './login.sass'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< Updated upstream
 import config from '../../config';
-=======
 import { ErrorComponent } from '../LoxotronCasinoErrorComponent';
->>>>>>> Stashed changes
 
 export default function LoginComponent(): JSX.Element {
   const [username, setUsername] = useState('');

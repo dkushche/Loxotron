@@ -3,11 +3,8 @@ import './register.sass'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< Updated upstream
 import config from '../../config';
-=======
 import { ErrorComponent } from '../LoxotronCasinoErrorComponent';
->>>>>>> Stashed changes
 
 export default function RegisterComponent(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -24,12 +21,7 @@ export default function RegisterComponent(): JSX.Element {
     setPassword(event.target.value);
   }
   const handleSubmit = async () => {
-<<<<<<< Updated upstream
-
     await axios.post(`${config.backend_url}/register`, {
-=======
-    await axios.post('http://localhost:7000/register', {
->>>>>>> Stashed changes
       username,
       password,
     }).then(res => {
