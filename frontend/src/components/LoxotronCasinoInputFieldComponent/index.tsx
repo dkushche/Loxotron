@@ -10,6 +10,7 @@ interface InputProps {
 
 const LoxotronCasinoInputFieldComponent: React.FC<InputProps> = (props: InputProps) => {
   return <input
+    minLength={5}
     type={props.type}
     className={props.className}
     value={props.value}

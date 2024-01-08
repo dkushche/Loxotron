@@ -39,7 +39,7 @@ export class AuthService {
 
     if (!isUsernameCorrect ||
         !(await bcrypt.compare(user.password, isUsernameCorrect.password))) {
-      throw new BadRequestException("Incorrect username or password");
+      throw new BadRequestException("Not authorized");
     }
 
     const token = this.jwtService.sign({ _id: isUsernameCorrect._id });

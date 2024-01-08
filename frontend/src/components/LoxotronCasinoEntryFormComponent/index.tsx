@@ -2,6 +2,7 @@ import './entryForm.sass'
 import LoxotronCasinoInputFieldComponent from '../LoxotronCasinoInputFieldComponent';
 import LoxotronCasinoButtonComponent from '../LoxotronCasinoButtonComponent';
 import { useNavigate } from 'react-router-dom';
+import { ErrorComponent } from '../LoxotronCasinoErrorComponent';
 
 type EntryFormProps = {
   title: string,
@@ -14,7 +15,8 @@ type EntryFormProps = {
   password: string,
   onChange1: React.FormEventHandler<HTMLInputElement>,
   onChange2: React.FormEventHandler<HTMLInputElement>,
-  onSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  inputMinLength: number
 }
 
 function LoxotronCasinoEntryFormComponent(props: EntryFormProps) {

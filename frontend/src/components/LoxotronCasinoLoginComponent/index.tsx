@@ -3,11 +3,16 @@ import './login.sass'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+<<<<<<< Updated upstream
 import config from '../../config';
+=======
+import { ErrorComponent } from '../LoxotronCasinoErrorComponent';
+>>>>>>> Stashed changes
 
 export default function LoginComponent(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorText, setErrorText] = useState<string | null>(null);
   const history = useNavigate();
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +30,9 @@ export default function LoginComponent(): JSX.Element {
       password,
     }).then(res => {
       history('/game')
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      setErrorText(err.response.data.message)
+    })
   }
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,7 +53,9 @@ export default function LoginComponent(): JSX.Element {
             link: "register",
             textForLink: "Create one"
           }}
+          inputMinLength={5}
         />
+        {errorText && <ErrorComponent text={errorText}/>}
       </div>
   )
 }

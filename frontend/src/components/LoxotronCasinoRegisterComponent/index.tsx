@@ -3,11 +3,17 @@ import './register.sass'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< Updated upstream
 import config from '../../config';
+=======
+import { ErrorComponent } from '../LoxotronCasinoErrorComponent';
+>>>>>>> Stashed changes
 
 export default function RegisterComponent(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorText, setErrorText] = useState<string | null>(null);
+
   const history = useNavigate();
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,15 +23,21 @@ export default function RegisterComponent(): JSX.Element {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   }
-
   const handleSubmit = async () => {
+<<<<<<< Updated upstream
 
     await axios.post(`${config.backend_url}/register`, {
+=======
+    await axios.post('http://localhost:7000/register', {
+>>>>>>> Stashed changes
       username,
       password,
     }).then(res => {
       history('/login')
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      setErrorText(err.response.data.message)
+    })
   }
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,7 +58,9 @@ export default function RegisterComponent(): JSX.Element {
           textForLink: "Log in",
           link: "login"
         }}
+        inputMinLength={5}
       />
+      {errorText && <ErrorComponent text={errorText}/>}
     </div>
   )
 }
