@@ -10,7 +10,7 @@ function App(): JSX.Element {
         <Routes>
           <Route path='/register' element={<RegisterComponent />}/>
           <Route path='/login' element={<LoginComponent />} />
-          <Route path='*' element={<Navigate to='/login' />} />
+          <Route path='*' element={<Navigate to='/game' />} />
         </Routes>
       </div>
     </div>
