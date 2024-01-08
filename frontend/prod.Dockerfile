@@ -10,7 +10,7 @@ RUN yarn build
 FROM nginx:stable-alpine as production
 
 COPY --from=build-stage /app/build /usr/share/nginx/html
-COPY --from=build-stage /app/public/* /usr/share/nginx/html/*
+COPY --from=build-stage /app/public /usr/share/nginx/html/static
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
