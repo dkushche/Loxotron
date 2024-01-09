@@ -7,9 +7,19 @@ import { JwtService } from "@nestjs/jwt";
 import { User } from "../src/models/user.model";
 
 const inputUser: User = {
-  username: "qwerty",
-  password: "123",
+  username: "qwertyui",
+  password: "12345678",
 };
+
+const tooShortUser: User = {
+  username: "qwer",
+  password: "123"
+};
+
+const tooLongUser: User = {
+  username: "qwertyuiopasd",
+  password: "12345678901"
+}
 
 export class MockUserModel {
   static findOne = jest.fn();
@@ -67,6 +77,24 @@ describe("AuthController", () => {
     try {
       const result = await authController.signIn(inputUser);
       expect(result).toThrow("Incorrect username or password");
+    } catch (e) {
+      console.log(e.name)
+    }
+  });
+
+  it("Register: should throw an error: too short value", async () => {
+    try {
+      const result = await authController.registartion(tooShortUser);
+      expect(result).toThrow("Value too short");
+    } catch (e) {
+      console.log(e.name)
+    }
+  });
+
+  it("Register: should throw an error: too long value", async () => {
+    try {
+      const result = await authController.registartion(tooLongUser);
+      expect(result).toThrow("Value too long");
     } catch (e) {
       console.log(e.name)
     }

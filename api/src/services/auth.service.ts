@@ -17,6 +17,14 @@ export class AuthService {
   async registration(user: User): Promise<object> {
     const newUser = new this.userModel(user);
 
+    if(user.username.length < 7 || user.password.length < 7) {
+      throw new BadRequestException("Value too short")
+    }
+
+    if(user.username.length > 10 || user.password.length > 10) {
+      throw new BadRequestException("Value too long")
+    }
+
     newUser.password = await bcrypt.hash(user.password, 10);
 
     if (await this.userModel.findOne({ username: newUser.username })) {
@@ -39,7 +47,7 @@ export class AuthService {
 
     if (!isUsernameCorrect ||
         !(await bcrypt.compare(user.password, isUsernameCorrect.password))) {
-      throw new BadRequestException("Incorrect username or password");
+      throw new BadRequestException("Not authorized");
     }
 
     const token = this.jwtService.sign({ _id: isUsernameCorrect._id });

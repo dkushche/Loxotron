@@ -4,7 +4,8 @@
   src: url("../../assets/fonts/GelosaCara.otf")
 
 .LoxotronCasinoEntryFormComponent
-  background-color: transparent
+  background-color: rgba(0, 0, 0, 0.8)
+  backdrop-filter: blur(2px)
   width: 500px
   height: 750px
   border-radius: 10px
@@ -12,6 +13,11 @@
   text-align: center
   box-shadow: 0 0 15px 0 #CA9328
   text-align: left
+  flex-direction: column
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
 
 h1
   font-family: 'Limelight'
@@ -82,10 +88,10 @@ ul
   font-family: "MyGelosa cara"
   display: inline-block
   position: absolute
-  bottom: 15px
-  left: 150px
   text-decoration-line: underline
   font-style: normal
   font-weight: 400
   line-height: normal
   letter-spacing: 1.8px
+  margin-top: 583px
+  margin-left: 180px

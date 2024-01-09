@@ -1,28 +1,17 @@
-import React from 'react';
-import LoxotronCasinoTextComponent from 'components/LoxotronCasinoTextComponent';
 import './App.sass';
-import LoxotronCasinoLogoComponent from "components/LoxotronCasinoLogoComponent"
-import LoxotronCasinoButtonComponent from "./components/LoxotronCasinoButtonComponent"
-import LoxotronCasinoInputFieldComponent from './components/LoxotronCasinoInputFieldComponent';
-import LoxotronCasinoEntryFormComponent from './components/LoxotronCasinoEntryFormComponent';
+import RegisterComponent from './components/LoxotronCasinoRegisterComponent';
+import LoginComponent from './components/LoxotronCasinoLoginComponent';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App(): JSX.Element {
   return (
     <div className='main'>
       <div className='container'>
-        <div className='LoxotronCasinoText'>
-          <LoxotronCasinoTextComponent />
-        </div>
-          <div className='LoxotronCasinoLogo'>
-              <LoxotronCasinoLogoComponent />
-          </div>
-        <div className="LoxotronCasinoButton">
-          <LoxotronCasinoButtonComponent text={'Button'} />
-        </div>
-        <div className="LoxotronCasinoInputField">
-          <LoxotronCasinoInputFieldComponent />
-        </div>
-        <LoxotronCasinoEntryFormComponent title={'Create account'} backendEndpoint={''} supportMessage={{ text: "No account?", link: "Create one"}} />
+        <Routes>
+          <Route path='/register' element={<RegisterComponent />}/>
+          <Route path='/login' element={<LoginComponent />} />
+          <Route path='*' element={<Navigate to='/game' />} />
+        </Routes>
       </div>
     </div>
   );
