@@ -1,8 +1,8 @@
 import React from 'react';
 import './panel.sass';
-import SmallLogo from '../../assets/svg/SmallLogo.svg';
-import FirstGame from '../../assets/svg/FirstGame.svg';
-import Marker from '../../assets/svg/Marker.svg';
+import SmallLogo from '../../../assets/svg/SmallLogo.svg';
+import FirstGame from '../../../assets/svg/FirstGame.svg';
+import Marker from '../../../assets/svg/Marker.svg';
 
 const PanelComponent = () => {
   return (
