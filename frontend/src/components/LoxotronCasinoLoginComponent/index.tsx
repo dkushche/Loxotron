@@ -22,10 +22,16 @@ export default function LoginComponent(): JSX.Element {
 
   const handleSubmit = async () => {
 
-    await axios.post(`${config.backend_url}/login`, {
-      username,
-      password,
-    }).then(res => {
+    await axios.post(
+      `${config.backend_url}/login`,
+      {
+        username,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    ).then(res => {
       history('/game')
     }).catch(err => {
       setErrorText(err.response.data.message)
