@@ -12,7 +12,6 @@ export class AuthMiddleware implements NestMiddleware {
       if (!cookie) {
         throw new UnauthorizedException("Please log in or sign in");
       }
-
       const token = cookie.slice(6);
       const decodedToken = this.authService.jwtService.verify(token);
 
