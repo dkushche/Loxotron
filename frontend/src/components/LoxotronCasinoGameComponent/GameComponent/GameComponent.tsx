@@ -9,8 +9,21 @@ import config from "../../../config";
 import SlotMachineComponent from "../LoxotronCasinoSlotMachine";
 import "../LoxotronCasinoSlotMachine/slotMachine.sass"
 import "../LoxotronCasinoSlotMachine/SlotMachine"
+import { useNavigate } from 'react-router-dom';
 
 const GameComponent: React.FC = () => {
+
+    const history = useNavigate();
+
+    async function checkToken() {
+      await axios.get(`${config.backend_url}/login`, {
+        withCredentials: true
+      })
+        .catch((err) => history('/login'))
+    }
+    
+    checkToken();
+
     const [serverResponse, setServerResponse] = useState<number | string>("");
     const [resultMessage, setResultMessage] = useState("");
 

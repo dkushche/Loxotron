@@ -21,7 +21,6 @@ export default function LoginComponent(): JSX.Element {
   }
 
   const handleSubmit = async () => {
-
     await axios.post(
       `${config.backend_url}/login`,
       {
