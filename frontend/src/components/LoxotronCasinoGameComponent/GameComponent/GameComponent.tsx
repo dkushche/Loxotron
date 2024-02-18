@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
 import PanelComponent from '../PanelComponent/PanelComponent';
 import './gameComponent.sass';
-import Frame from '../../../assets/svg/Frame.svg';
-import InfoPanel from '../../../assets/svg/GameChipsInfoRec.svg';
+
+import {ReactComponent as InfoPanel} from '../../../assets/svg/GameChipsInfoRec.svg';
 import SpinButtonComponent from "../../LoxotronCasinoSpinButtonComponent";
 import axios from "axios";
 import config from "../../../config";
 import SlotMachineComponent from "../LoxotronCasinoSlotMachine";
-import "../LoxotronCasinoSlotMachine/slotMachine.sass"
-import "../LoxotronCasinoSlotMachine/SlotMachine"
 import { useNavigate } from 'react-router-dom';
 
 const GameComponent: React.FC = () => {
@@ -62,7 +60,6 @@ const GameComponent: React.FC = () => {
           <SpinButtonComponent onClick={req} />
       </div>
       <div className='frame'>
-        <Frame />
           <SlotMachineComponent />
       </div>
       <div className='infoPanel'>

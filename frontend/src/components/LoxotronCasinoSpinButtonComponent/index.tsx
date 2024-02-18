@@ -1,5 +1,5 @@
 import React from 'react';
-import SpinButton from '../../assets//svg/SpinButton.svg';
+import { ReactComponent as SpinButton } from '../../assets/svg/SpinButton.svg';
 import './spinButton.sass';
 
 interface SpinButtonProps {
