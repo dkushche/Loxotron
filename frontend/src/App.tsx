@@ -9,10 +9,10 @@ function App(): JSX.Element {
     <div className='main'>
       <div className='container'>
         <Routes>
-        <Route path='/register' element={<RegisterComponent />}/>
-        <Route path='/login' element={<LoginComponent />} />
+          <Route path='/register' element={<RegisterComponent />}/>
+          <Route path='/login' element={<LoginComponent />} />
           <Route path='/game' element={<GameComponent />}/>
-        <Route path='*' element={<Navigate to='/game' />} />
+          <Route path='*' element={<Navigate to='/game' />} />
         </Routes>
       </div>
     </div>
