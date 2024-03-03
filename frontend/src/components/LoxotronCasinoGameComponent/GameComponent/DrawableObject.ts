@@ -13,28 +13,37 @@ export class Screen {
     }
 }
 
-abstract class DrawableObject {
+export abstract class DrawableObject {
     public static screen: Screen | null = null;
 
     abstract draw(): void;
 }
 
 export class FillObject extends DrawableObject {
-    private static width: number = 1479;
-    private static height: number = 11;
-    private static x: number = 46;
+    private x: number;
     private y: number;
+    private width: number;
+    private height: number;
 
-    constructor(y: number) {
+    constructor(x:number, y: number, width: number, height: number) {
         super();
         this.y = y;
+        this.x = x;
+        this.height = height;
+        this.width = width;
     }
 
     draw() {
         DrawableObject.screen!.context.fillStyle = "#0A0A0A";
         DrawableObject.screen!.context.fillRect(
-            FillObject.x, this.y, FillObject.width, FillObject.height
+            this.x, this.y, this.width, this.height
         );
+    }
+}
+
+export class Bumper extends FillObject {
+    constructor(y: number) {
+        super(46, y, 1479, 11);
     }
 }
 
@@ -54,5 +63,3 @@ export class SvgDrawableObject extends DrawableObject {
         DrawableObject.screen!.context.drawImage(this.image, this.x, this.y)
     }
 }
-
-export default DrawableObject;

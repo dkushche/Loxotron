@@ -1,15 +1,34 @@
 import React, {useState} from 'react';
 import PanelComponent from '../PanelComponent/PanelComponent';
 import './gameComponent.sass';
-
 import {ReactComponent as InfoPanel} from '../../../assets/svg/GameChipsInfoRec.svg';
 import SpinButtonComponent from "../../LoxotronCasinoSpinButtonComponent";
 import axios from "axios";
 import config from "../../../config";
-import SlotMachineComponent from "../LoxotronCasinoSlotMachine";
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import SlotMachine from "./SlotMachine";
 
 const GameComponent: React.FC = () => {
+
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [spinDisable, setSpinBlock] = useState(false);
+    const flipSpinBlock = () => {
+      setSpinBlock(!spinDisable);
+    }
+
+    let slotMachine: SlotMachine | null = null;
+    let startTime = 0;
+    let winStr: string | null = null;
+
+
+    useEffect(() => {
+        if (!canvasRef.current) return;
+
+        const canvas = canvasRef.current as HTMLCanvasElement;
+        slotMachine = new SlotMachine(canvas);
+        slotMachine.draw();
+    }, []);
 
     const history = useNavigate();
 
@@ -40,13 +59,32 @@ const GameComponent: React.FC = () => {
         setResultMessage(isWin ? "You win" : "You lose");
     };
 
-    async function req() {
+    function animator() {
+      let resStr: string | null = null;
+
+      if(Date.now() - startTime > 3) {
+        resStr = winStr;
+      }
+      let moving = slotMachine?.move(resStr);
+      if(moving) {
+        slotMachine?.draw();
+        requestAnimationFrame(animator);
+      } else {
+        flipSpinBlock();
+      }
+    }
+
+    async function request() {
         await axios.get(`${config.backend_url}/spin`, {
             withCredentials: true
         })
             .then(res => {
                 const serverValue: number = res.data.spinResult;
-                handleServerResponse(serverValue)
+                handleServerResponse(serverValue);
+                flipSpinBlock();
+                startTime = Date.now();
+                winStr = serverValue.toString();
+                requestAnimationFrame(animator);
             })
             .catch((err) => console.log(err))
     }
@@ -57,10 +95,12 @@ const GameComponent: React.FC = () => {
     <div className='gameComponent'>
       <PanelComponent />
       <div className='spinButton'>
-          <SpinButtonComponent onClick={req} />
+          <SpinButtonComponent onClick={request} disabled={spinDisable}/>
       </div>
       <div className='frame'>
-          <SlotMachineComponent />
+        <div>
+            <canvas ref={canvasRef} id={"screen"}/>
+        </div>
       </div>
       <div className='infoPanel'>
         <InfoPanel />
