@@ -4,7 +4,7 @@ import './spinButton.sass';
 
 interface SpinButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>,
-    disabled: boolean
+    disabled?: boolean
 }
 
 const SpinButtonComponent = (props: SpinButtonProps) => {

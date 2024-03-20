@@ -95,7 +95,11 @@ const GameComponent: React.FC = () => {
     <div className='gameComponent'>
       <PanelComponent />
       <div className='spinButton'>
-          <SpinButtonComponent onClick={request} disabled={spinDisable}/>
+        {
+          spinDisable === true
+          ? <SpinButtonComponent onClick={request} disabled={true}/>
+          : <SpinButtonComponent onClick={request}/>
+        }
       </div>
       <div className='frame'>
         <div>
