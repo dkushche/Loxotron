@@ -11,6 +11,7 @@ import car from "../../../assets/svg/tiles/9.svg";
 import perfume from "../../../assets/svg/tiles/10.svg";
 import { DrawableObject } from "./DrawableObject";
 import { Screen, SvgDrawableObject, FillObject, Bumper } from "./DrawableObject";
+import React from "react";
 
 class Tile extends SvgDrawableObject {
     static side = 250;
@@ -39,7 +40,7 @@ class Tile extends SvgDrawableObject {
 }
 
 class Reel {
-    static winPos = 3 * (Tile.side + Tile.space);
+    static winPos = 1 * (Tile.side + Tile.space) - Math.floor(Tile.side / 2);
     static tilesPaths = [
         camera, pipe, saxophone, hat, glasses,
         mask, house, manHat, car, perfume
@@ -51,19 +52,19 @@ class Reel {
     private column: Tile[] = [];
     private speed: number;
     
-    constructor(x: number, speed: number) {
+    constructor(x: number, speed: number, state: string) {
         Tile.amount = 10;
 
         for(let i = 0; i < 10; i++) {
             this.column.push(
                 new Tile(
                     x,
-                    Tile.margin + i * (Tile.side + Tile.space),
+                    i * (Tile.side + Tile.space) - Math.floor(Tile.side / 2),
                     Reel.tilesPaths[i]
                 )
             )
         }
-        this.speed =  Math.floor(Math.random() * 9) * (Tile.side + Tile.space);
+        this.speed = (-state + 1) * (Tile.side + Tile.space);
         this.move();
         this.speed = speed;
     }
@@ -75,13 +76,13 @@ class Reel {
     }
 
     move(winIdx: number | null = null): boolean | undefined {
-        if(!winIdx || this.column[winIdx].y !== Reel.winPos) {
+        if(winIdx === null || this.column[winIdx].y !== Reel.winPos) {
             let currentSpeed = this.speed;
 
-            if(winIdx) {
+            if(winIdx !== null) {
                 if(this.column[winIdx].y < Reel.winPos &&
                     this.column[winIdx].y + currentSpeed > Reel.winPos) {
-                    currentSpeed = Reel.winPos - this.column[winIdx].y
+                    currentSpeed = Reel.winPos - this.column[winIdx].y;
                 }
             }
 
@@ -104,7 +105,11 @@ class SlotMachine {
     private frame: SvgDrawableObject;
     private background: FillObject;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(
+        canvas: HTMLCanvasElement,
+        state: string,
+        setSlotMachineState: React.Dispatch<React.SetStateAction<string>>
+    ) {
         this.reels = [];
         this.topBumper = new Bumper(0);
         this.bottomBumper = new Bumper(612);
@@ -115,10 +120,22 @@ class SlotMachine {
         this.background = new FillObject(0, 0, screen.width, screen.height)
         DrawableObject.screen = screen;
 
+        let newState = "";
+
+        if (state === "") {
+            for (let i = 0; i < 5; i++) {
+                newState += Math.floor(Math.random() * 9);
+            }
+            setSlotMachineState(newState);
+        } else {
+            newState = state;
+        }
+
         for(let i = 0; i < 5; i ++) {
             this.reels.push(new Reel(
                 Reel.margin + i * (Reel.width + Reel.space),
-                3 + Math.ceil(Math.random() * 3)
+                3 + Math.ceil(Math.random() * 3),
+                newState[i]
             ))
         }
     }
@@ -149,7 +166,7 @@ class SlotMachine {
                 moving = true;
             }
         }
-        
+
         return moving;
     }
 }

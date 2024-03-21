@@ -13,22 +13,9 @@ const GameComponent: React.FC = () => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [spinDisable, setSpinBlock] = useState(false);
-    const flipSpinBlock = () => {
-      setSpinBlock(!spinDisable);
-    }
 
-    let slotMachine: SlotMachine | null = null;
-    let startTime = 0;
-    let winStr: string | null = null;
-
-
-    useEffect(() => {
-        if (!canvasRef.current) return;
-
-        const canvas = canvasRef.current as HTMLCanvasElement;
-        slotMachine = new SlotMachine(canvas);
-        slotMachine.draw();
-    }, []);
+    const [resultMessage, setResultMessage] = useState("");
+    const [slotMachineState, setSlotMachineState] = useState("");
 
     const history = useNavigate();
 
@@ -41,8 +28,15 @@ const GameComponent: React.FC = () => {
     
     checkToken();
 
-    const [serverResponse, setServerResponse] = useState<number | string>("");
-    const [resultMessage, setResultMessage] = useState("");
+    useEffect(() => {
+        if (!canvasRef.current) return;
+
+        const canvas = canvasRef.current as HTMLCanvasElement;
+        const slotMachine = new SlotMachine(
+          canvas, slotMachineState, setSlotMachineState
+        );
+        slotMachine.draw();
+    }, []);
 
     const winValues = [
         0,
@@ -52,27 +46,10 @@ const GameComponent: React.FC = () => {
     ];
 
     const handleServerResponse = (response: number) => {
-        setServerResponse(response);
-
         const isWin: boolean = winValues.includes(response);
 
         setResultMessage(isWin ? "You win" : "You lose");
     };
-
-    function animator() {
-      let resStr: string | null = null;
-
-      if(Date.now() - startTime > 3) {
-        resStr = winStr;
-      }
-      let moving = slotMachine?.move(resStr);
-      if(moving) {
-        slotMachine?.draw();
-        requestAnimationFrame(animator);
-      } else {
-        flipSpinBlock();
-      }
-    }
 
     async function request() {
         await axios.get(`${config.backend_url}/spin`, {
@@ -80,26 +57,46 @@ const GameComponent: React.FC = () => {
         })
             .then(res => {
                 const serverValue: number = res.data.spinResult;
+
+                const canvas = canvasRef.current as HTMLCanvasElement;
+                const slotMachine = new SlotMachine(
+                  canvas, slotMachineState, setSlotMachineState
+                );
+                slotMachine.draw();
+
                 handleServerResponse(serverValue);
-                flipSpinBlock();
-                startTime = Date.now();
-                winStr = serverValue.toString();
+                setSpinBlock(true);
+                const startTime = Date.now();
+
+                const winStr = serverValue.toString();
+                setSlotMachineState(winStr);
+
+                function animator() {
+                  let resStr: string | null = null;
+
+                  if(Date.now() - startTime > 3) {
+                    resStr = winStr;
+                  }
+
+                  let moving = slotMachine?.move(resStr);
+                  if(moving) {
+                    slotMachine?.draw();
+                    requestAnimationFrame(animator);
+                  } else {
+                    setSpinBlock(false);
+                  }
+                }
+
                 requestAnimationFrame(animator);
             })
             .catch((err) => console.log(err))
     }
 
-    const resultH1 = `<h1 class='result' style='color: white'>${resultMessage}</h1>`;
-
     return (
     <div className='gameComponent'>
       <PanelComponent />
       <div className='spinButton'>
-        {
-          spinDisable === true
-          ? <SpinButtonComponent onClick={request} disabled={true}/>
-          : <SpinButtonComponent onClick={request}/>
-        }
+          <SpinButtonComponent onClick={request} disabled={spinDisable}/>
       </div>
       <div className='frame'>
         <div>
@@ -108,7 +105,9 @@ const GameComponent: React.FC = () => {
       </div>
       <div className='infoPanel'>
         <InfoPanel />
-          <div dangerouslySetInnerHTML={{ __html: resultH1 }}/>
+          <div>
+            <h1 className='result' color='white'>{resultMessage}</h1>
+          </div>
       </div>
     </div>
   );
