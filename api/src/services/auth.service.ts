@@ -52,7 +52,13 @@ export class AuthService {
 
     const token = this.jwtService.sign({ _id: isUsernameCorrect._id });
 
-    res.cookie("token", token, { httpOnly: true, secure: false });
+    res.cookie(
+      "token", token, {
+        httpOnly: true,
+        secure: false,
+        domain: "loxotron.com",
+        sameSite: "lax"
+      });
 
     return {
       message: "You signed in successfully",
