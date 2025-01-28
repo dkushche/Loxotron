@@ -1,10 +1,10 @@
-import { AuthController } from "../src/controllers/auth.controller";
+import { AuthController } from "../src/auth/auth.controller";
 import { TestingModule } from "@nestjs/testing";
 import { Test } from "@nestjs/testing";
-import { AuthService } from "../src/services/auth.service";
+import { AuthService } from "../src/auth/auth.service";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "../src/models/user.model";
+import { User } from "../src/auth/models/user.model";
 
 const inputUser: User = {
   username: "qwertyui",

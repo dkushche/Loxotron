@@ -31,9 +31,13 @@
     "@types/cookie-parser": "^1.4.4",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
+    "argon2": "^0.41.1",
     "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "cookie-parser": "^1.4.6",
     "eslint": "^8.52.0",
+    "joi": "^17.13.3",
     "jose": "^4.14.6",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
@@ -79,5 +83,6 @@
     "moduleNameMapper": {
       "^src/(.*)": "<rootDir>/../src/$1"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

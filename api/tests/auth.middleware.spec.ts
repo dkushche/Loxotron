@@ -1,5 +1,5 @@
-import {AuthMiddleware} from "../src/middlewares/auth.middleware";
-import {AuthService} from "../src/services/auth.service";
+import {AuthMiddleware} from "../src/auth/guards/auth.guard";
+import {AuthService} from "../src/auth/auth.service";
 
 describe("AuthMiddleware", () => {
   let authMiddleware: AuthMiddleware;

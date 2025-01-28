@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { SpinnerService } from "../services/spinner.service";
-import { SpinnerController } from "../controllers/spinner.controller";
+import { SpinnerService } from "./spinner.service";
+import { SpinnerController } from "./spinner.controller";
 
 @Module({
   imports: [],
