@@ -1,9 +1,7 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { UserDocument } from "src/auth/models/user.model";
+import {User, UserDocument} from "src/auth/models/user.model";
 import { Model } from "mongoose";
-import { User } from "src/auth/models/user.model";
-import * as bcrypt from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 import { Response } from "express";
 import {CreateUserDto} from "./dto/createUser.dto";
@@ -17,14 +15,13 @@ export class AuthService {
   ) {}
 
   async registration(createUserDto: CreateUserDto): Promise<object> {
-    const user = new this.userModel(createUserDto);
+    const user: UserDocument = new this.userModel(createUserDto);
 
     const isUserExists = await this.isUserExists(user.username);
 
     if (isUserExists) {
         throw new BadRequestException("This username is already taken");
     }
-
     user.password = await hash(user.password);
 
     await user.save();
