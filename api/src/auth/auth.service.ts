@@ -40,7 +40,7 @@ export class AuthService {
 
     const isUsernameCorrect = await this.isUserExists(user.username);
     if (!isUsernameCorrect) {
-        throw new BadRequestException('Invalida username');
+        throw new BadRequestException('Invalid username');
     }
     const comparePasswords = await verify(isUsernameCorrect.password, user.password);
 

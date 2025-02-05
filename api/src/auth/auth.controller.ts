@@ -28,6 +28,6 @@ export class AuthController {
   @Get("login")
   @HttpCode(200)
   async checkToken(@Req() request) {
-    const token = request.cookies['token']; // eslint-disable-line
+    const token = request.cookies['token'];// eslint-disable-line
   }
 }

@@ -32,7 +32,6 @@ export default function LoginComponent(): JSX.Element {
       }
     ).then(res => {
       history('/game')
-        console.log(res)
     }).catch(err => {
       setErrorText(err.response.data.message)
     })
