@@ -27,7 +27,7 @@ export default function RegisterComponent(): JSX.Element {
     }).then(res => {
       history('/login')
     }).catch(err => {
-      console.log(err)
+      console.log(err.response.data.message);
       setErrorText(err.response.data.message)
     })
   }

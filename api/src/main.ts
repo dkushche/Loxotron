@@ -10,9 +10,10 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   app.enableCors({
     origin: [
-      "http://loxotron.com"
+      "https://loxotron.com"
     ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DElETE'],
   });
 
   app.use(cookieParser());

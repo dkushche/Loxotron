@@ -1,0 +1,83 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=loxotron
+        Validity
+            Not Before: Feb  8 13:30:39 2025 GMT
+            Not After : Feb  6 13:30:39 2035 GMT
+        Subject: CN=loxotron
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:c3:86:df:06:c3:4b:62:72:d1:30:54:15:8b:3b:
+                    38:8c:8d:e1:d9:80:bb:c7:85:54:10:ce:46:d3:4c:
+                    43:b3:11:f1:95:ca:5c:6a:c3:d8:fb:45:b0:e0:4b:
+                    cc:60:4c:bf:72:c3:e7:18:84:aa:a9:a4:1f:d0:c4:
+                    c1:a1:db:1b:75:3d:2a:07:79:6a:76:c3:95:02:ed:
+                    11:39:49:0e:a4:04:bd:b4:36:d9:b0:5e:9c:89:9a:
+                    76:9a:b9:2a:3c:c3:7a:e9:83:4e:23:0c:c2:8a:c8:
+                    07:0b:ba:1d:95:86:8d:67:d2:cd:da:3a:f9:45:74:
+                    57:85:48:b3:10:46:2d:af:4f:c1:de:9d:97:0c:4d:
+                    aa:da:44:f8:26:68:b9:8d:a6:a0:00:48:36:0e:c4:
+                    9e:41:db:2a:c8:16:9f:a6:65:b3:b6:2b:a2:33:f5:
+                    80:31:28:55:de:73:f5:bb:72:e0:a3:f2:a3:d8:21:
+                    f9:c0:a4:ae:53:d6:6b:4e:44:ee:94:10:9e:2f:82:
+                    98:b8:80:f1:73:25:36:f2:4d:3d:d8:1a:70:bd:88:
+                    b0:d6:f1:73:7e:84:fc:cb:bf:79:46:ec:72:31:47:
+                    91:a0:82:01:6e:e4:78:5a:5c:ef:40:48:f5:36:59:
+                    95:0d:3e:c9:a5:c0:d8:29:24:ce:75:02:36:30:bf:
+                    e7:fd
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                20:D5:BB:69:82:42:42:BB:D9:CC:D8:1E:5F:63:12:90:14:2B:1E:49
+            X509v3 Authority Key Identifier: 
+                keyid:6E:0D:6D:61:86:3E:BE:B2:92:B0:CA:FB:46:D6:9C:89:99:22:77:5B
+                DirName:/CN=loxotron
+                serial:44:BF:4A:F9:FB:DB:9B:3B:97:16:84:A2:1E:62:67:69:54:71:76:E5
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        32:b6:4a:3c:ce:13:b9:69:43:08:1d:77:48:9b:06:70:d1:a3:
+        e7:10:7c:30:49:44:8a:aa:ff:f6:93:57:fe:77:61:d9:96:85:
+        3e:58:53:ef:b6:dd:66:4e:3d:8b:d3:9e:b6:80:c1:ab:d3:81:
+        f5:dd:7b:7b:e0:e6:e5:d9:4d:e1:15:87:ba:dd:97:ce:73:01:
+        1a:1c:c6:dc:51:ca:8d:7f:d9:8b:d3:e6:fe:2e:23:a5:e5:f0:
+        72:b8:93:23:52:48:76:97:55:95:fb:17:57:4d:5b:11:b7:61:
+        61:73:10:d1:16:a7:fb:e9:27:78:c6:3d:51:7a:f7:a2:0a:2c:
+        9f:42:75:95:1b:63:0a:b6:28:89:43:79:48:33:de:29:8b:ba:
+        11:f2:d7:05:2b:2e:36:97:a2:0d:01:cf:f0:a0:ac:32:b9:99:
+        37:e7:c8:7c:31:82:84:70:1c:61:b4:3f:d2:8e:46:4f:cb:96:
+        0d:0c:1d:a2:9c:d3:79:f3:c8:3d:ea:cd:4f:3a:ef:3f:22:95:
+        70:84:04:d5:fe:71:b4:9b:7f:88:ee:b0:25:6e:f8:2e:75:0e:
+        8c:7a:f4:69:af:a4:a5:ff:54:e3:fe:23:f7:47:23:89:69:21:
+        1a:b0:67:3a:72:52:4b:d3:96:9e:55:b0:1c:7a:8f:1c:51:6a:
+        cf:e9:8d:2e
+-----BEGIN CERTIFICATE-----
+MIIDQTCCAimgAwIBAgIBATANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhsb3hv
+dHJvbjAeFw0yNTAyMDgxMzMwMzlaFw0zNTAyMDYxMzMwMzlaMBMxETAPBgNVBAMM
+CGxveG90cm9uMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw4bfBsNL
+YnLRMFQVizs4jI3h2YC7x4VUEM5G00xDsxHxlcpcasPY+0Ww4EvMYEy/csPnGISq
+qaQf0MTBodsbdT0qB3lqdsOVAu0ROUkOpAS9tDbZsF6ciZp2mrkqPMN66YNOIwzC
+isgHC7odlYaNZ9LN2jr5RXRXhUizEEYtr0/B3p2XDE2q2kT4Jmi5jaagAEg2DsSe
+QdsqyBafpmWztiuiM/WAMShV3nP1u3Lgo/Kj2CH5wKSuU9ZrTkTulBCeL4KYuIDx
+cyU28k092BpwvYiw1vFzfoT8y795RuxyMUeRoIIBbuR4WlzvQEj1NlmVDT7JpcDY
+KSTOdQI2ML/n/QIDAQABo4GfMIGcMAkGA1UdEwQCMAAwHQYDVR0OBBYEFCDVu2mC
+QkK72czYHl9jEpAUKx5JME4GA1UdIwRHMEWAFG4NbWGGPr6ykrDK+0bWnImZIndb
+oRekFTATMREwDwYDVQQDDAhsb3hvdHJvboIURL9K+fvbmzuXFoSiHmJnaVRxduUw
+EwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBCwUA
+A4IBAQAytko8zhO5aUMIHXdImwZw0aPnEHwwSUSKqv/2k1f+d2HZloU+WFPvtt1m
+Tj2L0562gMGr04H13Xt74Obl2U3hFYe63ZfOcwEaHMbcUcqNf9mL0+b+LiOl5fBy
+uJMjUkh2l1WV+xdXTVsRt2FhcxDRFqf76Sd4xj1ReveiCiyfQnWVG2MKtiiJQ3lI
+M94pi7oR8tcFKy42l6INAc/woKwyuZk358h8MYKEcBxhtD/SjkZPy5YNDB2inNN5
+88g96s1POu8/IpVwhATV/nG0m3+I7rAlbvgudQ6MevRpr6Sl/1Tj/iP3RyOJaSEa
+sGc6clJL05aeVbAceo8cUWrP6Y0u
+-----END CERTIFICATE-----
