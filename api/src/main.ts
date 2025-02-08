@@ -1,21 +1,28 @@
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./modules/app.module";
+import { AppModule } from "./app.module";
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from "cookie-parser";
+import {ConfigService} from "@nestjs/config";
+import {ValidationPipe} from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  const configService = app.get(ConfigService);
   app.enableCors({
     origin: [
-      "http://loxotron.com"
+      "https://loxotron.com"
     ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DElETE'],
   });
 
   app.use(cookieParser());
+  app.useGlobalPipes(new ValidationPipe({
+      transform: true,
+      forbidNonWhitelisted: true,
+  }));
 
-  const port = process.env.PORT ?? 7000;
+  const port = configService.get<string>('PORT') ?? 7000;
 
   const config = new DocumentBuilder()
     .setTitle('L0x0tron API')

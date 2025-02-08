@@ -10,7 +10,6 @@ import { useEffect, useRef } from 'react';
 import SlotMachine from "./SlotMachine";
 
 const GameComponent: React.FC = () => {
-
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [spinDisable, setSpinBlock] = useState(false);
 
@@ -18,7 +17,6 @@ const GameComponent: React.FC = () => {
     const [slotMachineState, setSlotMachineState] = useState("");
 
     const history = useNavigate();
-
     async function checkToken() {
       await axios.get(`${config.backend_url}/login`, {
         withCredentials: true
